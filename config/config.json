@@ -1,0 +1,23 @@
+{
+  "development": {
+    "username": "saharsh",          // The correct PostgreSQL username
+    "password": "Makeitsimple1",    // The correct PostgreSQL password
+    "database": "sticky_notes_dev", // The correct database name
+    "host": "127.0.0.1",            // The correct host (localhost for local development)
+    "dialect": "postgres"           // Ensure the dialect is set to 'postgres'
+},
+  "test": {
+    "username": "saharsh",          // The correct PostgreSQL username
+    "password": "Makeitsimple1",    // The correct PostgreSQL password
+    "database": "sticky_notes_dev", // The correct database name
+    "host": "127.0.0.1",            // The correct host (localhost for local development)
+    "dialect": "postgres" 
+  },
+  "production": {
+    "username": "saharsh",          // The correct PostgreSQL username
+    "password": "Makeitsimple1",    // The correct PostgreSQL password
+    "database": "sticky_notes_dev", // The correct database name
+    "host": "127.0.0.1",            // The correct host (localhost for local development)
+    "dialect": "postgres"
+  }
+}
