@@ -12,7 +12,7 @@ const User = sequelize.define("User", {
   username: {
     type: DataTypes.STRING,
     allowNull: false,
-    unique: true,
+    unique: true, // Ensure username is unique
   },
   password: {
     type: DataTypes.STRING,
@@ -20,16 +20,23 @@ const User = sequelize.define("User", {
   },
 });
 
-// Sync the database and create a test user
+// Sync the database and create a test user if it doesn't already exist
 (async () => {
   try {
     await sequelize.authenticate(); // Test the connection
     console.log("Connection to PostgreSQL has been established successfully.");
 
-    await sequelize.sync({ force: true }); // Recreate the database schema (for testing)
-    const hashedPassword = await bcrypt.hash("Makeitsimple1", 10);
-    await User.create({ username: "saharsh", password: hashedPassword });
-    console.log("Test user created.");
+    await sequelize.sync({ force: false }); // Do not drop and recreate tables
+
+    // Check if the static user already exists
+    const existingUser = await User.findOne({ where: { username: "saharsh" } });
+    if (!existingUser) {
+      const hashedPassword = await bcrypt.hash("Makeitsimple1", 10);
+      await User.create({ username: "saharsh", password: hashedPassword });
+      console.log("Test user created.");
+    } else {
+      console.log("Test user already exists.");
+    }
   } catch (error) {
     console.error("Unable to connect to the database:", error);
   }

@@ -23,22 +23,23 @@
 //   });
 //   return Note;
 // };
-const { Sequelize, DataTypes } = require('sequelize');
+const { Sequelize, DataTypes } = require('sequelize'); // Import Sequelize and DataTypes
 const sequelize = require('../config/database'); // Adjust the path to your database configuration
 
+// Define the "Note" model
 const Note = sequelize.define('Note', {
   title: {
-    type: DataTypes.STRING,
-    allowNull: false,
+    type: Sequelize.STRING(1000), // String with a max length of 1000 characters
+    allowNull: false, // "title" cannot be null
   },
   content: {
-    type: DataTypes.TEXT,
-    allowNull: false,
+    type: Sequelize.TEXT, // Text column for large content
+    allowNull: false, // "content" cannot be null
   },
   color: {
-    type: DataTypes.STRING,
-    allowNull: true,
+    type: Sequelize.STRING(255), // String with a max length of 255 characters
+    allowNull: true, // "color" can be null
   },
 });
 
-module.exports = { Note };
+module.exports = { Note }; // Export the Note model
